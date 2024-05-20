@@ -295,7 +295,7 @@ def TrainOneBatch(model, opt, data, loss_fun,queue_v,use_the_queue, scheduler, e
         if args.AV_T==1:
             if epoch == 0 and i_batch == 0:
                 print("AV_T active")
-            if args.pretrain_path != '':
+            if args.pretrain_path == '':
                 text_freeze(model)
                 loss = loss_fun(sim_audio_video)
                 fushed = (video_out + audio_out) / 2
@@ -323,7 +323,7 @@ def TrainOneBatch(model, opt, data, loss_fun,queue_v,use_the_queue, scheduler, e
         elif args.VT_A==1:
             if epoch == 0 and i_batch == 0:
                 print("VT_A active")
-            if args.pretrain_path == '':#ここ==に直せ！！！！！
+            if args.pretrain_path == '':
                 audio_freeze(model)
                 loss = loss_fun(sim_text_video)
                 fushed = (text_out + video_out) / 2
@@ -363,7 +363,7 @@ def TrainOneBatch(model, opt, data, loss_fun,queue_v,use_the_queue, scheduler, e
                 labels = kmeans.fit_predict(fushed)
         
             if args.AV_T == 1:
-                if args.pretrain_path != '':
+                if args.pretrain_path == '':
                     loss_val = cluster_contrast(video_out, centroid, labels[-bs:], bs) + \
                                 cluster_contrast(audio_out, centroid, labels[-bs:], bs)
                 else:

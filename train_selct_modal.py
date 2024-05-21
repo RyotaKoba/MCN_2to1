@@ -41,7 +41,7 @@ from torch.utils.tensorboard import SummaryWriter
 from line_profiler import LineProfiler
 
 whole_time = time.time()
-
+#seed
 random.seed(time.time())
 
 now = datetime.now()

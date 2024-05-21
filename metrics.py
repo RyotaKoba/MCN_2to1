@@ -7,10 +7,11 @@ import numpy as np
 from tqdm import tqdm
 
 def compute_metrics(x, t, eval_lang_retrieval=False, eval_msrvtt=False):
-    # print(len(x),len(x[0]))
     print(x.shape)
     print(len(t))
     print(t)
+    #---------------
+    #順位チェック用
     # x_copy = np.copy(x)
     # t = np.expand_dims(t,0)
     # t_copy = np.copy(t)
@@ -22,6 +23,7 @@ def compute_metrics(x, t, eval_lang_retrieval=False, eval_msrvtt=False):
     #     x_copy[k] = x_copy[k][sort_indices]
     #     t[k] = t[k][sort_indices]
     # np.savetxt("logs/AVT_youcook_e28.csv",t,delimiter=',',fmt='%5.f')
+    #----------------
     if eval_lang_retrieval:
         print("Retrieving language given input video clips")
         x = x.T

@@ -10,10 +10,9 @@ import csv
 import pdb
 import sys
 import pickle
+#GPU USAGE
 os.environ['CUDA_DEVICE_ORDER'] ="PCI_BUS_ID"
 os.environ['CUDA_VISIBLE_DEVICES'] = "0,1,2,3"
-# os.environ['CUDA_VISIBLE_DEVICES'] = "0,1"
-# os.environ['CUDA_VISIBLE_DEVICES'] = "1,5" 
 import numpy as np
 from args import get_args
 from functools import partial

@@ -2,24 +2,20 @@ from tqdm.auto import tqdm
 from PIL import Image
 import numpy as np
 import json
+import webdataset as wds
+import os
 
-shard_path = './shards_01'
+shard_path = './data/shards_01'
+dataset_root = "/home/video/"
 
-shard_dir_path = Path(shard_path)
-shard_dir_path.mkdir(exist_ok=True)
-shard_filename = str(shard_dir_path / 'shards-%05d.tar')
+shard_dir_path = os.pardir(shard_path)
+shard_filename = os.path.join(shard_dir_path,f"shards_video.tar")
 
-shard_size = int(50 * 1000**2)  # 50MB each
+# shard_size = int(50 * 1000**2)  # 50MB each
 
-with wds.ShardWriter(
-    shard_filename,
-    maxsize=shard_size,
-    ) as sink, tqdm(
-        file_paths
-    ) as pbar:
+with wds.ShardWriter(shard_filename) as sink, tqdm(file_paths) as pbar:
 
     for file_path in pbar:
-
         category_name = file_path.parent.name
         label = category_index[category_name]
         key_str = category_name + '/' + file_path.stem

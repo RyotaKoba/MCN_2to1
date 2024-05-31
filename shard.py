@@ -4,6 +4,28 @@ import numpy as np
 import json
 import webdataset as wds
 import os
+import random
+
+dataset_root = './data/howto100M/HowTo100M_1166_videopath890000.txt'
+
+file_paths = [
+    path for path in Path(dataset_root).glob('*/*')
+    if not path.is_dir() 
+        and path.name.endswith((
+            '.JPEG', '.jpeg', '.jpg',
+        ))
+]
+random.shuffle(file_paths)
+
+print(file_paths[:2])
+
+category_list = sorted([
+    path.name for path in Path(dataset_root).glob('*') if path.is_dir()
+    ])
+category_index = {
+    category_name: i 
+    for i, category_name in enumerate(category_list)
+    }
 
 shard_path = './data/shards_01'
 dataset_root = "/home/video/"

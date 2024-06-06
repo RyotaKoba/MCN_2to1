@@ -37,14 +37,13 @@ from fast_pytorch_kmeans import KMeans
 import torch.nn.functional as F
 from model_davenet import load_DAVEnet
 from torch.utils.tensorboard import SummaryWriter
-from line_profiler import LineProfiler
 
 whole_time = time.time()
 #seed
 random.seed(time.time())
 
 now = datetime.now()
-profile=LineProfiler()
+
 
 current_time = now.strftime("%H:%M:%S")
 print("Current Time =", current_time)
@@ -494,7 +493,7 @@ with open(file_path,'a') as csv_file:
         centroid = None
         net.train() #追加
 
-        @profile
+        # @profile
         def learn(queue_v,use_the_queue,centroid):
             running_loss = 0.0
             for i_batch, sample_batch in tqdm(enumerate(dataloader),total=len(dataloader)):

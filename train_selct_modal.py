@@ -373,7 +373,7 @@ def TrainOneBatch(model, opt, data, loss_fun,queue_v,use_the_queue, scheduler, e
                                 cluster_contrast(audio_out, centroid, labels[-bs:], bs)
                 else:
                     loss_val = cluster_contrast(video_out, centroid, labels[-bs:], bs)
-                loss_val = loss_val / 2
+                # loss_val = loss_val / 2
             elif args.VT_A == 1:
                 if args.pretrain_path == '':
                     loss_val = cluster_contrast(text_out, centroid, labels[-bs:], bs) + \

@@ -543,5 +543,7 @@ if args.eval_youcook:
 if args.eval_msrvtt:
     Eval_retrieval(net, dataloader_msrvtt, 'MSR-VTT')
 
+net = net.module.cpu()
+
 whole_time = time.time() - whole_time
 print(whole_time)

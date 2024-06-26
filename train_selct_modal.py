@@ -493,7 +493,7 @@ with open(file_path,'a') as csv_file:
         centroid = None
         net.train() #追加
 
-        # @profile
+        @profile
         def learn(queue_v,use_the_queue,centroid):
             running_loss = 0.0
             for i_batch, sample_batch in tqdm(enumerate(dataloader),total=len(dataloader)):

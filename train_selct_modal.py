@@ -268,6 +268,8 @@ def video_freeze(model):
     for param in model.module.recon_v.parameters():
         param.requires_grad = False
 
+
+@profile
 def TrainOneBatch(model, opt, data, loss_fun,queue_v,use_the_queue, scheduler, epoch,i_batch, centroid, apex=False):
     video = data['video'].cuda(non_blocking=True)
     audio = data['audio'].cuda(non_blocking=True)
@@ -493,7 +495,7 @@ with open(file_path,'a') as csv_file:
         centroid = None
         net.train() #追加
 
-        @profile
+       
         def learn(queue_v,use_the_queue,centroid):
             running_loss = 0.0
             for i_batch, sample_batch in tqdm(enumerate(dataloader),total=len(dataloader)):

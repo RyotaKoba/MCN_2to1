@@ -269,7 +269,7 @@ def video_freeze(model):
         param.requires_grad = False
 
 
-@profile
+# @profile
 def TrainOneBatch(model, opt, data, loss_fun,queue_v,use_the_queue, scheduler, epoch,i_batch, centroid, apex=False):
     video = data['video'].cuda(non_blocking=True)
     audio = data['audio'].cuda(non_blocking=True)
